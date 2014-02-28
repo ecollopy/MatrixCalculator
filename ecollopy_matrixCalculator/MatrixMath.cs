@@ -111,7 +111,14 @@ namespace ecollopy_matrixCalculator
                 {
                     for (int j = 0; j < matrix.GetSize(); j++)
                     {
-
+                        if (i < x && j < y)
+                        {
+                            result[i, j] = matrix.GetValue(i, j);
+                        }
+                        else if (i > x && j > y)
+                        {
+                            result[i, j] = matrix.GetValue(i + 1, j + 1);
+                        }
                     }
                 }
                 return new Matrix(result);
