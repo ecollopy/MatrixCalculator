@@ -9,14 +9,47 @@ namespace ecollopy_matrixCalculator
     class Matrix
     {
         private double[,] values;
-        public Matrix(int side)
+        private int sideSize;
+
+        public Matrix(double[,] values)
         {
-            values = new double[side, side];
+            this.values = values;
+            sideSize = values.Length;
         }
 
         public double GetValue(int x, int y)
         {
             return values[x, y];
+        }
+
+        public Matrix Add(Matrix m)
+        {
+            double[,] results = new double[m.sideSize, m.sideSize];
+            return new Matrix(results);
+        }
+
+        public Matrix Subtract(Matrix m)
+        {
+            double[,] results = new double[m.sideSize, m.sideSize];
+            return new Matrix(results);
+        }
+
+        public Matrix Scale(Matrix m, double scalar)
+        {
+            double[,] results = new double[m.sideSize, m.sideSize];
+            return new Matrix(results);
+        }
+
+        public Matrix Multiply(Matrix m)
+        {
+            double[,] results = new double[m.sideSize, m.sideSize];
+            return new Matrix(results);
+        }
+
+        public Matrix GetInverse(Matrix m)
+        {
+            double[,] results = new double[m.sideSize, m.sideSize];
+            return new Matrix(results);
         }
     }
 }
