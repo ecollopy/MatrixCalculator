@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +11,11 @@ namespace ecollopy_matrixCalculator
     {
         public static Matrix Add(Matrix matrix1, Matrix matrix2)
         {
-            Matrix result = new Matrix(new double[matrix1.GetSize(),matrix1.GetSize()]);
-            for (int i = 0; i < matrix1.GetSize(); i++)
+            int matrixSize = matrix1.GetSize();
+            Matrix result = new Matrix(new double[matrixSize, matrixSize]);
+            for (int i = 0; i < matrixSize; i++)
             {
-                for (int j = 0; j < matrix1.GetSize(); j++)
+                for (int j = 0; j < matrixSize; j++)
                 {
                     result.SetValue(i, j, matrix1.GetValue(i, j) + matrix2.GetValue(i, j));
                 }
@@ -25,10 +25,11 @@ namespace ecollopy_matrixCalculator
 
         public static Matrix Subtract(Matrix matrix1, Matrix matrix2)
         {
-            Matrix result = new Matrix(new double[matrix1.GetSize(), matrix1.GetSize()]);
-            for (int i = 0; i < matrix1.GetSize(); i++)
+            int matrixSize = matrix1.GetSize();
+            Matrix result = new Matrix(new double[matrixSize, matrixSize]);
+            for (int i = 0; i < matrixSize; i++)
             {
-                for (int j = 0; j < matrix1.GetSize(); j++)
+                for (int j = 0; j < matrixSize; j++)
                 {
                     result.SetValue(i, j, matrix1.GetValue(i, j) - matrix2.GetValue(i, j));
                 }
@@ -38,13 +39,14 @@ namespace ecollopy_matrixCalculator
 
         public static Matrix Multiply(Matrix matrix1, Matrix matrix2)
         {
-            Matrix result = new Matrix(new double[matrix1.GetSize(), matrix1.GetSize()]);
-            for (int i = 0; i < matrix1.GetSize(); i++)
+            int matrixSize = matrix1.GetSize();
+            Matrix result = new Matrix(new double[matrixSize, matrixSize]);
+            for (int i = 0; i < matrixSize; i++)
             {
-                for (int j = 0; j < matrix1.GetSize(); j++)
+                for (int j = 0; j < matrixSize; j++)
                 {
                     result.SetValue(i, j, 0);
-                    for (int k = 0; k < matrix1.GetSize(); k++)
+                    for (int k = 0; k < matrixSize; k++)
                     {
                         result.SetValue(i, j, result.GetValue(i, j) + matrix1.GetValue(i, k) * matrix2.GetValue(k, j));
                     }
@@ -61,50 +63,7 @@ namespace ecollopy_matrixCalculator
 
         public static Matrix Invert(Matrix matrix)
         {
-            Matrix result = null;
-            return result;
-        }
-    }
-}
-=======
-﻿	﻿using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Text;
-	using System.Threading.Tasks;
-	
-	namespace ecollopy_matrixCalculator
-	{
-	    //The Static MatrixMath class. To be instantiated wherever matrixes need mathing.
-	    static class MatrixMath
-	    {
-	        public static Matrix Add(Matrix matrix1, Matrix matrix2)
-	        {
-	            Matrix result = null;
-	            return result;
-	        }
-	
-	        public static Matrix Subtract(Matrix matrix1, Matrix matrix2)
-	        {
-	            Matrix result = null;
-	            return result;
-	        }
-	
-	        public static Matrix Multiply(Matrix matrix1, Matrix matrix2)
-	        {
-	            Matrix result = null;
-	            return result;
-	        }
-	
-	        public static Matrix Scale(Matrix matrix, double scalar)
-	        {
-	            Matrix result = null;
-	            return result;
-	        }
-	
-	        public static Matrix Invert(Matrix matrix)
-	        {
-                double[,] values = new double[matrix.GetSize(), matrix.GetSize()];
+            double[,] values = new double[matrix.GetSize(), matrix.GetSize()];
                 double determinant = GetDeterminant(matrix);
                 Matrix result;
                 if (matrix.GetSize() == 2)
@@ -120,9 +79,8 @@ namespace ecollopy_matrixCalculator
                     result = Adjoint(matrix);
                 }
 	            return Scale(result, (1/determinant));
-	        }
-
-            public static double GetDeterminant(Matrix matrix)
+        }
+           public static double GetDeterminant(Matrix matrix)
             {
                 double result = 0;
                 if (matrix.GetSize() == 2)
@@ -138,8 +96,7 @@ namespace ecollopy_matrixCalculator
                 }
                 return result;
             }
-
-            public static Matrix GetMinor(Matrix matrix, int x, int y)
+         public static Matrix GetMinor(Matrix matrix, int x, int y)
             {
                 double[,] result = new double[matrix.GetSize()-1, matrix.GetSize()-1];
                 for (int i = 0; i < matrix.GetSize(); i++)
@@ -151,7 +108,7 @@ namespace ecollopy_matrixCalculator
                 }
                 return new Matrix(result);
             }
-
+        
             public static Matrix Adjoint(Matrix matrix)
             {
                 double[,] values = new double[matrix.GetSize(), matrix.GetSize()];
@@ -179,6 +136,5 @@ namespace ecollopy_matrixCalculator
                 }
                 return new Matrix(result);
             }
-	    }
-	}
->>>>>>> origin/branch
+    }
+}

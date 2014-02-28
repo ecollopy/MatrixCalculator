@@ -27,18 +27,9 @@ namespace ecollopy_matrixCalculator
             return values[x, y];
         }
 
-<<<<<<< HEAD
         public void SetValue(int x, int y, double value)
         {
             values[x, y] = value;
-        }
-
-        public Matrix Add(Matrix m)
-=======
-        public int GetSize()
->>>>>>> origin/branch
-        {
-            return sideSize;
         }
     }
 }
