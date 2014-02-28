@@ -17,9 +17,19 @@ namespace ecollopy_matrixCalculator
             sideSize = values.Length;
         }
 
+        public int GetSize()
+        {
+            return sideSize;
+        }
+
         public double GetValue(int x, int y)
         {
             return values[x, y];
+        }
+
+        public void SetValue(int x, int y, double value)
+        {
+            values[x, y] = value;
         }
 
         public Matrix Add(Matrix m)
