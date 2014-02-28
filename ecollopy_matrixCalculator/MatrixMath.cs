@@ -57,7 +57,15 @@ namespace ecollopy_matrixCalculator
 
         public static Matrix Scale(Matrix matrix, double scalar)
         {
-            Matrix result = null;
+            int matrixSize = matrix.GetSize();
+            Matrix result = new Matrix(new double[matrixSize, matrixSize]);
+            for (int i = 0; i < matrixSize; i++)
+            {
+                for (int j = 0; j < matrixSize; j++)
+                {
+                    result.SetValue(i, j, matrix.GetValue(i, j) * scalar);
+                }
+            }
             return result;
         }
 
