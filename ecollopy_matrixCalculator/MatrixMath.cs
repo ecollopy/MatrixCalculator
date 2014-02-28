@@ -100,6 +100,7 @@ namespace ecollopy_matrixCalculator
                     for (int i = 0; i < matrix.GetSize(); i++)
                     {
                         Matrix minor = GetMinor(matrix, i, 0);
+                        result += GetDeterminant(minor);
                     }
                 }
                 return result;
