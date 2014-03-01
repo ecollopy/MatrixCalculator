@@ -68,6 +68,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Matrix.cs" />
+    <Compile Include="MatrixMath.cs" />
+    <Compile Include="Mode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
