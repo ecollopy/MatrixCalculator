@@ -23,8 +23,7 @@ namespace ecollopy_matrixCalculator
         public MainWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
-
-
     }
 }
