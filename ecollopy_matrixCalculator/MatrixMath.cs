@@ -71,86 +71,108 @@ namespace ecollopy_matrixCalculator
 
         public static Matrix Invert(Matrix matrix)
         {
-            double[,] values = new double[matrix.GetSize(), matrix.GetSize()];
-                double determinant = GetDeterminant(matrix);
-                Matrix result;
-                if (matrix.GetSize() == 2)
-                {
-                    values[0, 0] = matrix.GetValue(1, 1);
-                    values[0, 1] = (-1) * matrix.GetValue(1, 0);
-                    values[1, 0] = (-1) * matrix.GetValue(0, 1);
-                    values[1, 1] = matrix.GetValue(0, 0);
-                    result = new Matrix(values);
-                }
-                else
-                {
-                    result = Adjoint(matrix);
-                }
-	            return Scale(result, (1/determinant));
+            int matrixSize = matrix.GetSize();
+            Matrix result;
+            double determinant = GetDeterminant(matrix);
+            if (matrix.GetSize() == 2)
+            {
+                result = new Matrix(new double[matrixSize, matrixSize]);
+                result.SetValue(0, 0, matrix.GetValue(1, 1));
+                result.SetValue(0, 1, ((-1) * (matrix.GetValue(1, 0))));
+                result.SetValue(1, 0, ((-1) * (matrix.GetValue(0, 1))));
+                result.SetValue(1, 1, matrix.GetValue(0, 0));
+            }
+            else
+            {
+                result = Adjoint(matrix);
+            }
+            return Scale(result, (1 / determinant));
         }
-           public static double GetDeterminant(Matrix matrix)
-            {
-                double result = 0;
-                if (matrix.GetSize() == 2)
-                {
-                    result = ((matrix.GetValue(0,0)*matrix.GetValue(1,1))-(matrix.GetValue(0,1)*matrix.GetValue(1,0)));
-                }
-                else
-                {
-                    for (int i = 0; i < matrix.GetSize(); i++)
-                    {
-                        Matrix minor = GetMinor(matrix, i, 0);
-                        result += GetDeterminant(minor);
-                    }
-                }
-                return result;
-            }
-         public static Matrix GetMinor(Matrix matrix, int x, int y)
-            {
-                double[,] result = new double[matrix.GetSize()-1, matrix.GetSize()-1];
-                for (int i = 0; i < matrix.GetSize(); i++)
-                {
-                    for (int j = 0; j < matrix.GetSize(); j++)
-                    {
-                        if (i < x && j < y)
-                        {
-                            result[i, j] = matrix.GetValue(i, j);
-                        }
-                        else if (i > x && j > y)
-                        {
-                            result[i, j] = matrix.GetValue(i + 1, j + 1);
-                        }
-                    }
-                }
-                return new Matrix(result);
-            }
-        
-            public static Matrix Adjoint(Matrix matrix)
-            {
-                double[,] values = new double[matrix.GetSize(), matrix.GetSize()];
-                for (int i = 0; i < matrix.GetSize(); i++)
-                {
-                    for (int j = 0; j < matrix.GetSize(); j++)
-                    {
-                        Matrix cofactor = GetMinor(matrix, i, j);
-                        values[i, j] = Math.Pow(-1, (i+j)) * GetDeterminant(cofactor);
-                    }
-                }
-                Matrix result = new Matrix(values);
-                return Transpose(result);
-            }
 
-            public static Matrix Transpose(Matrix matrix)
+        public static double GetDeterminant(Matrix matrix)
+        {
+            double result = 0;
+            if (matrix.GetSize() == 2)
             {
-                double[,] result = new double[matrix.GetSize(), matrix.GetSize()];
+                result = ((matrix.GetValue(0, 0) * matrix.GetValue(1, 1)) - (matrix.GetValue(0, 1) * matrix.GetValue(1, 0)));
+            }
+            else
+            {
                 for (int i = 0; i < matrix.GetSize(); i++)
                 {
-                    for (int j = 0; j < matrix.GetSize(); j++)
-                    {
-                        result[i,j] = matrix.GetValue(j,i);
-                    }
+                    Matrix minor = GetMinor(matrix, i, 0);
+                    result += GetDeterminant(minor);
                 }
-                return new Matrix(result);
             }
+            return result;
+        }
+
+        public static Matrix GetMinor(Matrix matrix, int x, int y)
+        {
+            int matrixSize = matrix.GetSize() - 1;
+            Matrix result = new Matrix(new double[matrixSize, matrixSize]);
+            int rowVal, colVal;
+            for (int i = 0; i < matrix.GetSize(); i++)
+            {
+                for (int j = 0; j < matrix.GetSize(); j++)
+                {
+                    if (i < x && j < y)
+                    {
+                        rowVal = i;
+                        colVal = j;
+                    }
+                    else
+                    {
+                        if (i > x)
+                        {
+                            rowVal = i + 1;
+                        }
+                        else
+                        {
+                            rowVal = i;
+                        }
+                        if (j > y)
+                        {
+                            colVal = j + 1;
+                        }
+                        else
+                        {
+                            colVal = j;
+                        }
+                    }
+                    result.SetValue(i, j, matrix.GetValue(rowVal,colVal));
+                }
+            }
+            return result;
+        }
+
+        public static Matrix Adjoint(Matrix matrix)
+        {
+            int matrixSize = matrix.GetSize();
+            Matrix result = new Matrix(new double[matrixSize, matrixSize]);
+            for (int i = 0; i < matrix.GetSize(); i++)
+            {
+                for (int j = 0; j < matrix.GetSize(); j++)
+                {
+                    Matrix cofactor = GetMinor(matrix, i, j);
+                    result.SetValue(i, j, (Math.Pow(-1, (i + j)) * GetDeterminant(cofactor)));
+                }
+            }
+            return Transpose(result);
+        }
+
+        public static Matrix Transpose(Matrix matrix)
+        {
+            int matrixSize = matrix.GetSize();
+            Matrix result = new Matrix(new double[matrixSize, matrixSize]);
+            for (int i = 0; i < matrix.GetSize(); i++)
+            {
+                for (int j = 0; j < matrix.GetSize(); j++)
+                {
+                    result.SetValue(i, j, (matrix.GetValue(j, i)));
+                }
+            }
+            return result;
+        }
     }
 }

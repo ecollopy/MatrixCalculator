@@ -83,7 +83,7 @@
             <Label Name="Footer"
                    Grid.Column="0"
                    Grid.Row="0"
-                   Content="Developed by Chris Gregory and Erin Callopy"
+                   Content="Developed by Chris Gregory and Erin Collopy"
                    FontSize="15"
                    HorizontalContentAlignment="Center"
                    VerticalContentAlignment="Center"/>
