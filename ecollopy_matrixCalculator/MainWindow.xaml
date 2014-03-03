@@ -20,6 +20,17 @@
                    Background="LightGray"
                    HorizontalContentAlignment="Center"
                    VerticalContentAlignment="Center"/>
+        <ComboBox Name="MatrixSizeComboBox"
+                  Text="Matrix Size"
+                  Width="70"
+                  Height="30"
+                  Margin="5"
+                  FontSize="20"
+                  HorizontalAlignment="Right">
+            <ComboBoxItem Name="MatrixSizeComboBoxOption1">2x2</ComboBoxItem>
+            <ComboBoxItem Name="MatrixSizeComboBoxOption2">3x3</ComboBoxItem>
+            <ComboBoxItem Name="MatrixSizeComboBoxOption3">4x4</ComboBoxItem>
+        </ComboBox>
         <Grid Name="Tabs"
                   Grid.Row="1"
                   Background="Gray">
@@ -72,9 +83,13 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
+                <Grid Name="AddInput1MatrixGrid"
+                      Grid.Column="0"/>
                 <Label Content="+"
                        Grid.Column="1"
                        FontSize="20"/>
+                <Grid Name="AddInput2MatrixGrid"
+                      Grid.Column="2"/>
             </Grid>
             <Grid Name="SubtractGrid"
                   Visibility="Collapsed"
@@ -85,9 +100,13 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
+                <Grid Name="SubtractInput1MatrixGrid"
+                      Grid.Column="0"/>
                 <Label Content="-"
                        Grid.Column="1"
                        FontSize="20"/>
+                <Grid Name="SubtractInput2MatrixGrid"
+                      Grid.Column="2"/>
             </Grid>
             <Grid Name="MultiplyGrid"
                   Visibility="Collapsed"
@@ -98,9 +117,13 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
+                <Grid Name="MultiplyInput1MatrixGrid"
+                      Grid.Column="0"/>
                 <Label Content="*"
                        Grid.Column="1"
                        FontSize="20"/>
+                <Grid Name="MultiplyInput2MatrixGrid"
+                      Grid.Column="2"/>
             </Grid>
             <Grid Name="ScaleGrid"
                   Visibility="Collapsed"
@@ -111,9 +134,14 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
+                <Grid Name="ScaleInput1MatrixGrid"
+                      Grid.Column="0"/>
                 <Label Content="*"
                        Grid.Column="1"
                        FontSize="20"/>
+                <TextBox Name="ScalarInput"
+                         Grid.Column="2"
+                         Width="70"/>
             </Grid>
             <Grid Name="InvertGrid"
                   Visibility="Collapsed"
@@ -123,6 +151,8 @@
                     <ColumnDefinition Width="5*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
+                <Grid Name="InvertInputMatrixGrid"
+                      Grid.Column="0"/>
                 <Label Content="^-1"
                        Grid.Column="1"
                        FontSize="20"/>
