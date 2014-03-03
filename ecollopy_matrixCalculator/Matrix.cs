@@ -31,5 +31,18 @@ namespace ecollopy_matrixCalculator
         {
             values[x, y] = value;
         }
+
+        public void Print()
+        {
+            for (int i = 0; i < values.GetLength(0); i++)
+            {
+                Console.Write("[ ");
+                for (int j = 0; j < values.GetLength(1); j++)
+                {
+                    Console.Write(values[i, j] + " ");
+                }
+                Console.Write("]\n");
+            }
+        }
     }
 }

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace ecollopy_matrixCalculator
 {
     /// <summary>
@@ -20,14 +21,16 @@ namespace ecollopy_matrixCalculator
     /// </summary>
     public partial class MainWindow : Window
     {
-        Matrix matrix1;
-        Matrix matrix2;
+        Matrix matrix1 = new Matrix(new double[,] { { 1, 3 }, { -2, 4 } });
+        Matrix matrix2 = new Matrix(new double[,] { { 5, 6 }, { 7, 8 } });
         int matrixSize;
+        int scalar = 2;
         Mode currentMode;
-
+        
         public MainWindow()
         {
             InitializeComponent();
+            //MatrixMath.Test(matrix1, matrix2, scalar);
         }
 
         public void Calculate()
@@ -40,7 +43,10 @@ namespace ecollopy_matrixCalculator
             currentMode = newMode;
             ColorChange();
             ButtonChange();
+
         }
+
+
 
         #region ButtonClickEvents
         private void AdditionButton_Click(object sender, RoutedEventArgs e)
@@ -118,7 +124,32 @@ namespace ecollopy_matrixCalculator
         }
         public void ButtonChange()
         {
+            AddGrid.Visibility = Visibility.Collapsed;
+            SubtractGrid.Visibility = Visibility.Collapsed;
+            MultiplyGrid.Visibility = Visibility.Collapsed;
+            ScaleGrid.Visibility = Visibility.Collapsed;
+            InvertGrid.Visibility = Visibility.Collapsed;
 
+            if (currentMode == Mode.Add)
+            {
+                AddGrid.Visibility = Visibility.Visible;
+            }
+            if (currentMode == Mode.Subtract)
+            {
+                SubtractGrid.Visibility = Visibility.Visible;
+            }
+            if (currentMode == Mode.Multiply)
+            {
+                MultiplyGrid.Visibility = Visibility.Visible;
+            }
+            if (currentMode == Mode.Scale)
+            {
+                ScaleGrid.Visibility = Visibility.Visible;
+            }
+            if (currentMode == Mode.Invert)
+            {
+                InvertGrid.Visibility = Visibility.Visible;
+            }            
         }
         #endregion
     }

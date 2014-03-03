@@ -174,5 +174,38 @@ namespace ecollopy_matrixCalculator
             }
             return result;
         }
+
+        public static void Test(Matrix matrix1, Matrix matrix2, int scalar)
+        {
+            Console.WriteLine("Matrix 1:");
+            matrix1.Print();
+            Console.WriteLine("");
+
+            Console.WriteLine("Matrix 2:");
+            matrix2.Print();
+            Console.WriteLine("");
+
+            Console.WriteLine("Matrix 1 + Matrix 2:");
+            Add(matrix1, matrix2).Print();
+            Console.WriteLine("");
+
+            Console.WriteLine("Matrix 1 - Matrix 2:");
+            Subtract(matrix1, matrix2).Print();
+            Console.WriteLine("");
+
+            Console.WriteLine("Matrix 1 * " + scalar);
+            Scale(matrix1, scalar).Print();
+            Console.WriteLine("");
+
+            Console.WriteLine("Matrix 1 * Matrix 2:");
+            Multiply(matrix1, matrix2).Print();
+            Console.WriteLine("");
+
+            Console.WriteLine("Matrix 1 Inverted:");
+            Invert(matrix1).Print();
+            Console.WriteLine("");
+
+            Console.ReadLine();
+        }
     }
 }
