@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ecollopy_matrixCalculator
 {
-    class Matrix
+    public class Matrix
     {
         private double[,] values;
         private int sideSize;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ecollopy_matrixCalculator
 {
     //The Static MatrixMath class. To be instantiated wherever matrixes need mathing.
-    static class MatrixMath
+    public static class MatrixMath
     {
         public static Matrix Add(Matrix matrix1, Matrix matrix2)
         {
