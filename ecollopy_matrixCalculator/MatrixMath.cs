@@ -106,7 +106,7 @@ namespace ecollopy_matrixCalculator
                 for (int i = 0; i < matrixSize; i++)
                 {
                     Matrix minor = GetMinor(matrix, i, 0);
-                    result += (Math.Pow(-1, i) * (i * GetDeterminant(minor)));
+                    result += (Math.Pow(-1, i) * (matrix.GetValue(i, 0) * GetDeterminant(minor)));
                 }
             }
             return result;
