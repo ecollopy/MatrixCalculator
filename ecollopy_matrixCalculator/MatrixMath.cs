@@ -106,7 +106,7 @@ namespace ecollopy_matrixCalculator
                 for (int i = 0; i < matrixSize; i++)
                 {
                     Matrix minor = GetMinor(matrix, i, 0);
-                    result += GetDeterminant(minor);
+                    result += (Math.Pow(-1, i) * (i * GetDeterminant(minor)));
                 }
             }
             return result;
@@ -114,7 +114,6 @@ namespace ecollopy_matrixCalculator
 
         public static Matrix GetMinor(Matrix matrix, int x, int y)
         {
-            //This should be working.
             int matrixSize = matrix.GetSize() - 1;
             int k = 0;
             int l = 0;
@@ -122,17 +121,20 @@ namespace ecollopy_matrixCalculator
             for (int i = 0; i < matrix.GetSize(); i++)
             {
                 l = 0;
-                for (int j = 0; j < matrix.GetSize(); j++)
+                if(i != x)
                 {
-                    if (i != x && j != y)
+                    for (int j = 0; j < matrix.GetSize(); j++)
                     {
-                        result.SetValue(k, l, matrix.GetValue(i, j));
-                        l++;
+                        if (j != y)
+                        {
+                            result.SetValue(k, l, matrix.GetValue(i, j));
+                            l++;
+                        }
                     }
-                }
-                if (i != x)
-                {
-                    k++;
+                    if (i != x)
+                    {
+                        k++;
+                    }
                 }
             }
             return result;
