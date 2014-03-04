@@ -74,6 +74,10 @@ namespace ecollopy_matrixCalculator
             int matrixSize = matrix.GetSize();
             Matrix result;
             double determinant = GetDeterminant(matrix);
+            if (determinant == 0)
+            {
+                throw new FormatException();
+            }
             if (matrix.GetSize() == 2)
             {
                 result = new Matrix(new double[matrixSize, matrixSize]);
@@ -110,39 +114,25 @@ namespace ecollopy_matrixCalculator
 
         public static Matrix GetMinor(Matrix matrix, int x, int y)
         {
+            //This should be working.
             int matrixSize = matrix.GetSize() - 1;
+            int k = 0;
+            int l = 0;
             Matrix result = new Matrix(new double[matrixSize, matrixSize]);
-            int rowVal, colVal;
             for (int i = 0; i < matrix.GetSize(); i++)
             {
+                l = 0;
                 for (int j = 0; j < matrix.GetSize(); j++)
                 {
-                    if (i < x && j < y)
+                    if (i != x && j != y)
                     {
-                        rowVal = i;
-                        colVal = j;
+                        result.SetValue(k, l, matrix.GetValue(i, j));
+                        l++;
                     }
-                    else
-                    {
-                        if (i > x)
-                        {
-                            rowVal = i + 1;
-                        }
-                        else
-                        {
-                            rowVal = i;
-                        }
-                        if (j > y)
-                        {
-                            colVal = j + 1;
-                        }
-                        else
-                        {
-                            colVal = j;
-                        }
-                    }
-                    if(i != x && j != y)
-                        result.SetValue(i, j, matrix.GetValue(rowVal,colVal));
+                }
+                if (i != x)
+                {
+                    k++;
                 }
             }
             return result;
