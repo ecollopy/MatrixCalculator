@@ -46,7 +46,76 @@ namespace ecollopy_matrixCalculator
 
         }
 
+        #region MatrixResizing
+        public void ChangeSize()
+        {
+            List<Grid> Matricies = new List<Grid>();
+            Matricies.Add(AddInput1MatrixGrid);
+            Matricies.Add(AddInput2MatrixGrid);
+            Matricies.Add(SubtractInput1MatrixGrid);
+            Matricies.Add(SubtractInput2MatrixGrid);
+            Matricies.Add(MultiplyInput1MatrixGrid);
+            Matricies.Add(MultiplyInput2MatrixGrid);
+            Matricies.Add(ScaleInputMatrixGrid);
+            Matricies.Add(InvertInputMatrixGrid);
+            Matricies.Add(ResultGrid);
 
+            foreach (Grid grid in Matricies)
+            {
+                grid.ColumnDefinitions.Clear();
+                grid.RowDefinitions.Clear();
+            }
+
+            for (int i = 0; i < matrixSize; i++)
+            {
+                AddColumn(Matricies);
+                AddRow(Matricies);
+            }
+
+            foreach (Grid grid in Matricies)
+            {
+                for (int i = 0; i < matrixSize; i++)
+                {
+                    for (int j = 0; j < matrixSize; j++){
+                        TextBox textBox = new TextBox();
+                        textBox.Width = 50;
+                        textBox.Height = 50;
+                        textBox.VerticalContentAlignment = System.Windows.VerticalAlignment.Center;
+                        textBox.HorizontalContentAlignment = System.Windows.HorizontalAlignment.Center;
+                        textBox.FontSize = 30;
+                        //textBox.Margin = (Thickness) 3;
+                        Grid.SetRow(textBox, i);
+                        Grid.SetColumn(textBox, j);
+                        grid.Children.Add(textBox);
+                    }
+                }
+            }
+        }
+
+        public void AddColumn(List<Grid> grids)
+        {
+            foreach (Grid grid in grids)
+            {
+                ColumnDefinition coldef = new ColumnDefinition();
+                grid.ColumnDefinitions.Add(coldef);
+            }
+        }
+
+        public void AddRow(List<Grid> grids)
+        {
+            foreach (Grid grid in grids)
+            {
+                grid.RowDefinitions.Add(new RowDefinition());
+            }
+        }
+
+        private void MatrixSizeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            matrixSize = MatrixSizeComboBox.SelectedIndex + 2;
+            Header.Content = matrixSize + " x " + matrixSize;
+            ChangeSize();
+        }
+        #endregion
 
         #region ButtonClickEvents
         private void AdditionButton_Click(object sender, RoutedEventArgs e)

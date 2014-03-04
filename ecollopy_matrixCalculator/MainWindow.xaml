@@ -26,10 +26,12 @@
                   Height="30"
                   Margin="5"
                   FontSize="20"
-                  HorizontalAlignment="Right">
+                  HorizontalAlignment="Right"
+                  SelectionChanged="MatrixSizeComboBox_SelectionChanged">                      
             <ComboBoxItem Name="MatrixSizeComboBoxOption1">2x2</ComboBoxItem>
             <ComboBoxItem Name="MatrixSizeComboBoxOption2">3x3</ComboBoxItem>
             <ComboBoxItem Name="MatrixSizeComboBoxOption3">4x4</ComboBoxItem>
+            <ComboBoxItem Name="MatrixSizeComboBoxOption4">5x5</ComboBoxItem>
         </ComboBox>
         <Grid Name="Tabs"
                   Grid.Row="1"
@@ -87,6 +89,7 @@
                       Grid.Column="0"/>
                 <Label Content="+"
                        Grid.Column="1"
+                       VerticalAlignment="Center"
                        FontSize="20"/>
                 <Grid Name="AddInput2MatrixGrid"
                       Grid.Column="2"/>
@@ -103,6 +106,7 @@
                 <Grid Name="SubtractInput1MatrixGrid"
                       Grid.Column="0"/>
                 <Label Content="-"
+                       VerticalAlignment="Center"
                        Grid.Column="1"
                        FontSize="20"/>
                 <Grid Name="SubtractInput2MatrixGrid"
@@ -120,6 +124,7 @@
                 <Grid Name="MultiplyInput1MatrixGrid"
                       Grid.Column="0"/>
                 <Label Content="*"
+                       VerticalAlignment="Center"
                        Grid.Column="1"
                        FontSize="20"/>
                 <Grid Name="MultiplyInput2MatrixGrid"
@@ -134,14 +139,20 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
-                <Grid Name="ScaleInput1MatrixGrid"
-                      Grid.Column="0"/>
+                <Grid Name="ScaleInputMatrixGrid"
+                      Grid.Column="0"
+                      />
                 <Label Content="*"
+                       VerticalAlignment="Center"
                        Grid.Column="1"
                        FontSize="20"/>
                 <TextBox Name="ScalarInput"
+                         Height="50"
+                         Width="50"
                          Grid.Column="2"
-                         Width="70"/>
+                         FontSize="30"
+                         VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Center"/>
             </Grid>
             <Grid Name="InvertGrid"
                   Visibility="Collapsed"
@@ -154,6 +165,7 @@
                 <Grid Name="InvertInputMatrixGrid"
                       Grid.Column="0"/>
                 <Label Content="^-1"
+                       VerticalAlignment="Center"
                        Grid.Column="1"
                        FontSize="20"/>
             </Grid>
@@ -169,7 +181,9 @@
                     Click="CalculateButton_Click"/>
         </Grid>
         <Grid Name="OutputGrid"
-              Grid.Row="4">
+              Grid.Row="4"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center">
             <Grid Name="ResultGrid">
                 
             </Grid>
