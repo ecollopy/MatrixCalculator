@@ -214,7 +214,6 @@ namespace ecollopy_matrixCalculator
         private void MatrixSizeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             matrixSize = MatrixSizeComboBox.SelectedIndex + 2;
-            Header.Content = matrixSize + " x " + matrixSize;
             ChangeSize();
         }
         #endregion
