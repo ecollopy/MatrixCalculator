@@ -35,6 +35,11 @@ namespace ecollopy_matrixCalculator
 
         public void Calculate()
         {
+            Matrix matrix1;
+            foreach (Grid g in AddInput1MatrixGrid.Children)
+            {
+
+            }
             //Does Shit.
         }
 

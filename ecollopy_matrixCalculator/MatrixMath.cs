@@ -78,8 +78,8 @@ namespace ecollopy_matrixCalculator
             {
                 result = new Matrix(new double[matrixSize, matrixSize]);
                 result.SetValue(0, 0, matrix.GetValue(1, 1));
-                result.SetValue(0, 1, ((-1) * (matrix.GetValue(1, 0))));
-                result.SetValue(1, 0, ((-1) * (matrix.GetValue(0, 1))));
+                result.SetValue(1, 0, ((-1) * (matrix.GetValue(1, 0))));
+                result.SetValue(0, 1, ((-1) * (matrix.GetValue(0, 1))));
                 result.SetValue(1, 1, matrix.GetValue(0, 0));
             }
             else
@@ -91,14 +91,15 @@ namespace ecollopy_matrixCalculator
 
         public static double GetDeterminant(Matrix matrix)
         {
+            int matrixSize = matrix.GetSize();
             double result = 0;
-            if (matrix.GetSize() == 2)
+            if (matrixSize == 2)
             {
                 result = ((matrix.GetValue(0, 0) * matrix.GetValue(1, 1)) - (matrix.GetValue(0, 1) * matrix.GetValue(1, 0)));
             }
             else
             {
-                for (int i = 0; i < matrix.GetSize(); i++)
+                for (int i = 0; i < matrixSize; i++)
                 {
                     Matrix minor = GetMinor(matrix, i, 0);
                     result += GetDeterminant(minor);
@@ -140,7 +141,8 @@ namespace ecollopy_matrixCalculator
                             colVal = j;
                         }
                     }
-                    result.SetValue(i, j, matrix.GetValue(rowVal,colVal));
+                    if(i != x && j != y)
+                        result.SetValue(i, j, matrix.GetValue(rowVal,colVal));
                 }
             }
             return result;
