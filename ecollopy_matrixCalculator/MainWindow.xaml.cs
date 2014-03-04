@@ -35,14 +35,6 @@ namespace ecollopy_matrixCalculator
 
         public void Calculate()
         {
-<<<<<<< HEAD
-            Matrix matrix1;
-            foreach (Grid g in AddInput1MatrixGrid.Children)
-            {
-
-            }
-            //Does Shit.
-=======
             Matrix result = new Matrix(new double[matrixSize, matrixSize]);
             matrix1 = new Matrix(new double[matrixSize, matrixSize]);
             matrix1 = new Matrix(new double[matrixSize, matrixSize]);
@@ -146,7 +138,6 @@ namespace ecollopy_matrixCalculator
                     }
                 }
             }
->>>>>>> 69fc82669b3587f508bf797277fea3b81d66d622
         }
 
         public void ChangeMode(Mode newMode)
