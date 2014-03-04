@@ -147,8 +147,8 @@
                        Grid.Column="1"
                        FontSize="20"/>
                 <TextBox Name="ScalarInput"
-                         Height="50"
-                         Width="50"
+                         Height="70"
+                         Width="70"
                          Grid.Column="2"
                          FontSize="30"
                          VerticalContentAlignment="Center"

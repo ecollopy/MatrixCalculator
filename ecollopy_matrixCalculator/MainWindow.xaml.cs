@@ -35,7 +35,109 @@ namespace ecollopy_matrixCalculator
 
         public void Calculate()
         {
-            //Does Shit.
+            Matrix result = new Matrix(new double[matrixSize, matrixSize]);
+            matrix1 = new Matrix(new double[matrixSize, matrixSize]);
+            matrix1 = new Matrix(new double[matrixSize, matrixSize]);
+            try
+            {
+                scalar = Convert.ToInt32(ScalarInput.Text);
+            }
+            catch (FormatException e)
+            {
+
+            }
+            try
+            {
+                //Do the calculation
+                if (currentMode == Mode.Add)
+                {
+                    for (int i = 0; i < matrixSize; i++)
+                    {
+                        for (int j = 0; j < matrixSize; j++)
+                        {
+                            TextBox textBox1 = AddInput1MatrixGrid.Children[i * matrixSize + j] as TextBox;
+                            matrix1.SetValue(i, j, Convert.ToDouble(textBox1.Text));
+                            TextBox textBox2 = AddInput2MatrixGrid.Children[i * matrixSize + j] as TextBox;
+                            matrix2.SetValue(i, j, Convert.ToDouble(textBox2.Text));
+                        }
+                    }
+                    result = MatrixMath.Add(matrix1, matrix2);
+                }
+                if (currentMode == Mode.Subtract)
+                {
+                    for (int i = 0; i < matrixSize; i++)
+                    {
+                        for (int j = 0; j < matrixSize; j++)
+                        {
+                            TextBox textBox1 = SubtractInput1MatrixGrid.Children[i * matrixSize + j] as TextBox;
+                            matrix1.SetValue(i, j, Convert.ToDouble(textBox1.Text));
+                            TextBox textBox2 = SubtractInput2MatrixGrid.Children[i * matrixSize + j] as TextBox;
+                            matrix2.SetValue(i, j, Convert.ToDouble(textBox2.Text));
+                        }
+                    }
+                    result = MatrixMath.Subtract(matrix1, matrix2);
+                }
+                if (currentMode == Mode.Multiply)
+                {
+                    for (int i = 0; i < matrixSize; i++)
+                    {
+                        for (int j = 0; j < matrixSize; j++)
+                        {
+                            TextBox textBox1 = MultiplyInput1MatrixGrid.Children[i * matrixSize + j] as TextBox;
+                            matrix1.SetValue(i, j, Convert.ToDouble(textBox1.Text));
+                            TextBox textBox2 = MultiplyInput2MatrixGrid.Children[i * matrixSize + j] as TextBox;
+                            matrix2.SetValue(i, j, Convert.ToDouble(textBox2.Text));
+                        }
+                    }
+                    result = MatrixMath.Multiply(matrix1, matrix2);
+                }
+                if (currentMode == Mode.Scale)
+                {
+                    for (int i = 0; i < matrixSize; i++)
+                    {
+                        for (int j = 0; j < matrixSize; j++)
+                        {
+                            TextBox textBox1 = ScaleInputMatrixGrid.Children[i * matrixSize + j] as TextBox;
+                            matrix1.SetValue(i, j, Convert.ToDouble(textBox1.Text));
+                        }
+                    }
+                    result = MatrixMath.Scale(matrix1, scalar);
+                }
+                if (currentMode == Mode.Invert)
+                {
+                    for (int i = 0; i < matrixSize; i++)
+                    {
+                        for (int j = 0; j < matrixSize; j++)
+                        {
+                            TextBox textBox1 = InvertInputMatrixGrid.Children[i * matrixSize + j] as TextBox;
+                            matrix1.SetValue(i, j, Convert.ToDouble(textBox1.Text));
+                        }
+                    }
+                    result = MatrixMath.Invert(matrix1);
+                }
+
+                //Make the output show in the GUI.
+                for (int i = 0; i < matrixSize; i++)
+                {
+                    for (int j = 0; j < matrixSize; j++)
+                    {
+                        TextBox textBox = ResultGrid.Children[i * ResultGrid.ColumnDefinitions.Count + j] as TextBox; //HOLY MATH BATMAN!
+                        textBox.Text = "" + result.GetValue(i, j);
+                    }
+                }
+            }
+            catch (FormatException e)
+            {
+                //Make the output show in the GUI.
+                for (int i = 0; i < matrixSize; i++)
+                {
+                    for (int j = 0; j < matrixSize; j++)
+                    {
+                        TextBox textBox = ResultGrid.Children[i * ResultGrid.ColumnDefinitions.Count + j] as TextBox; //HOLY MATH BATMAN!
+                        textBox.Text = "X";
+                    }
+                }
+            }
         }
 
         public void ChangeMode(Mode newMode)
@@ -78,11 +180,11 @@ namespace ecollopy_matrixCalculator
                 {
                     for (int j = 0; j < matrixSize; j++){
                         TextBox textBox = new TextBox();
-                        textBox.Width = 50;
-                        textBox.Height = 50;
+                        textBox.Width = 70;
+                        textBox.Height = 70;
                         textBox.VerticalContentAlignment = System.Windows.VerticalAlignment.Center;
                         textBox.HorizontalContentAlignment = System.Windows.HorizontalAlignment.Center;
-                        textBox.FontSize = 30;
+                        textBox.FontSize = 25;
                         //textBox.Margin = (Thickness) 3;
                         Grid.SetRow(textBox, i);
                         Grid.SetColumn(textBox, j);

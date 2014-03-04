@@ -14,7 +14,7 @@ namespace ecollopy_matrixCalculator
         public Matrix(double[,] values)
         {
             this.values = values;
-            sideSize = values.Length;
+            sideSize = (int) Math.Sqrt(values.Length);
         }
 
         public int GetSize()
